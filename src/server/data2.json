@@ -1,0 +1,12 @@
+[
+    {
+      "_id": "5b9f48a2406b2cd74c55c661",
+      "name": "Ahmad Ismael",
+      "email": "Ahmad@imant.com",
+      "firstContact": "2018-11-26T22:00:00.000Z",
+      "emailType": null,
+      "sold": true,
+      "owner": "Emily Durham",
+      "country": "Romania"
+    }
+]
