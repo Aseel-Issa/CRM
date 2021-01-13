@@ -109,27 +109,32 @@ class DbManager{
     }
     
     // client object should have an id
-    // attributes that can be updated in this method are: owner, sold, emailType only and once at a time
+    // attributes that can be updated in this method are: owner, sold, emailType name, surename, and country only
     async updateClient(client){
-        let field
-        let value
+        let fields = ''
         if(client.owner){
-            field = "owner"
             const employeeId = await this.getEmployeeId(client.owner)
             if(employeeId == null){
                 console.log('Error: This owner does not exist')
                 return
             }
-            value = employeeId
-        }else if(client.sold){
-            field = 'sold'
-            value = +client.sold
-        }else if(client.emailType){
-            field = "emailType"
-            value = `'${client.emailType}'`
+            fields+="owner = "+employeeId+', '
+        }
+        if(client.sold){
+            fields+=`sold = '${+client.sold}', `
+        }
+        if(client.emailType){
+            fields+=`emailType = '${client.emailType}', `
+        }
+        if(client.name && client.surename){
+            fields+=`name = '${client.name} ${client.surename}', `
+        }
+        if(client.country){
+            const countryId = await this.saveCountry(client.country)
+            fields+="country = "+countryId+', '
         }
 
-        let query = `UPDATE Clients SET ${field} = ${value} WHERE id = ${client.id}`
+        let query = `UPDATE Clients SET ${fields.substring(0, fields.length-2)} WHERE id = ${client.id}`
         try{
             const result = await sequelize.query(query)
             return true

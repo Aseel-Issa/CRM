@@ -21,7 +21,12 @@ class Popup extends Component {
     }
 
     updateClient = async () => {
-        await this.props.updateClient(this.state)
+        await this.props.clientsStore.updateClient({
+            id: this.props.client.id,
+            name: this.state.name,
+            surename: this.state.surename,
+            country: this.state.country
+        })
     }
 
     closePopup = () => {
