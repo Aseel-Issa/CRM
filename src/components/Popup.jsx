@@ -7,7 +7,7 @@ class Popup extends Component {
         super()
         this.state = {
             name: '',
-            surename: '',
+            surname: '',
             country: ''
         }
     }
@@ -15,7 +15,7 @@ class Popup extends Component {
     componentDidMount() {
         this.setState({
             name: this.props.client.name,
-            surename: this.props.client.surename,
+            surname: this.props.client.surname,
             country: this.props.client.country
         })
     }
@@ -24,7 +24,7 @@ class Popup extends Component {
         await this.props.clientsStore.updateClient({
             id: this.props.client.id,
             name: this.state.name,
-            surename: this.state.surename,
+            surname: this.state.surname,
             country: this.state.country
         })
     }
@@ -38,7 +38,7 @@ class Popup extends Component {
     }
 
     handleSurename = (e) => {
-        this.setState({ surename: e.target.value })
+        this.setState({ surname: e.target.value })
     }
 
     handleCountry = (e) => {
@@ -54,8 +54,8 @@ class Popup extends Component {
                     <input id='name' onChange={this.handleName} value={this.state.name}></input>
                 </div>
                 <div>
-                    <label>Surename</label>
-                    <input id='surename' onChange={this.handleSurename} value={this.state.surename}></input>
+                    <label>Surname</label>
+                    <input id='surename' onChange={this.handleSurename} value={this.state.surname}></input>
                 </div>
                 <div>
                     <label>Country</label>

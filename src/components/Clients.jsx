@@ -3,6 +3,7 @@ import React, { Component } from 'react'
 import { observer, inject } from 'mobx-react'
 import Client from './Client';
 import Popup from './Popup';
+import SearchBar from './SearchBar'
 
 class Clients extends Component {
 
@@ -37,11 +38,12 @@ class Clients extends Component {
 
         return (
             <div>
+                <SearchBar />
                 <table className='clientsTable'>
                     <tbody>
                         <tr>
                             <th className='name'>Name</th>
-                            <th className='surename'>Surename</th>
+                            <th className='surname'>Surname</th>
                             <th className='country'>Country</th>
                             <th className='firstContact'>First Contact</th>
                             <th className='email'>Email</th>

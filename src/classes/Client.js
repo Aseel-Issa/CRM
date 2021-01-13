@@ -3,10 +3,10 @@ import {observable, makeObservable} from 'mobx'
 
 class Client {
 
-    constructor(id, name, surename, country, firstContact, email, sold, owner, show){
+    constructor(id, name, surname, country, firstContact, email, sold, owner, show){
         this.id = id
         this.name = name
-        this.surename = surename
+        this.surname = surname
         this.country = country
         this.firstContact = firstContact
         this.email = email
@@ -16,7 +16,7 @@ class Client {
 
         makeObservable(this, {
             name: observable,
-            surename: observable,
+            surname: observable,
             country: observable,
             firstContact: observable,
             email: observable,

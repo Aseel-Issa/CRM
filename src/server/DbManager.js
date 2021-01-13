@@ -126,8 +126,8 @@ class DbManager{
         if(client.emailType){
             fields+=`emailType = '${client.emailType}', `
         }
-        if(client.name && client.surename){
-            fields+=`name = '${client.name} ${client.surename}', `
+        if(client.name && client.surname){
+            fields+=`name = '${client.name} ${client.surname}', `
         }
         if(client.country){
             const countryId = await this.saveCountry(client.country)
@@ -147,7 +147,7 @@ class DbManager{
 
     async getAllClients() {
         try{
-            const result = await sequelize.query(`SELECT cl.id, cl.name, cl.email, cl.firstContact, cl.emailType, cl.sold, e.name as owner, co.name as country `
+            const result = await sequelize.query(`SELECT cl.id, cl.name, cl.emailType as email, cl.firstContact, cl.emailType, cl.sold, e.name as owner, co.name as country `
             +`FROM Clients as cl, Country co, Employees e `
             +`WHERE cl.country=co.id AND cl.owner = e.id `
             +`ORDER BY cl.firstContact DESC`)

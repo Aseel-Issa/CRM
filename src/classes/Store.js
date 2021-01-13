@@ -1,9 +1,9 @@
-import {observable, makeObservable, action} from 'mobx'
+import { observable, makeObservable, action } from 'mobx'
 import axios from 'axios'
 import Client from './Client'
 
-class Store{
-    constructor(){
+class Store {
+    constructor() {
         this.clients = []
 
         makeObservable(this, {
@@ -24,31 +24,40 @@ class Store{
     }
 
     search = (searchStr, field) => {
-        this.clients = this.clients.map(element => {
-            if(!element[field].includes(searchStr)){
-                element.show = false
+        try {
+            if(field!='firstContact'){
+                field = field.toLowerCase()
             }
-            return element
-        })
+            // console.log('field: '+field)
+            this.clients = this.clients.map(element => {
+                if (element[field] == null || element[field] =='' || !element[field].toLowerCase().includes(searchStr.toLowerCase())) {
+                    element.show = false
+                    // console.log(element[field] + ' ' + element.show)
+                    // console.log(JSON.stringify(element))
+                }else{
+                    element.show = true
+                }
+                return element
+            })
+        } catch (e) {
+            console.log(e)
+        }
     }
 
     // updates the name, surename, and country of the client
     updateClient = async (client) => {
-        try{
+        try {
             console.log(JSON.stringify(client))
             const results = await axios.put(`http://localhost:3001/client`, client)
-            if(results){
-                // console.log('client: '+JSON.stringify(client))
+            if (results) {
                 const index = this.clients.findIndex(element => element.id == client.id)
-                console.log('Index: '+index)
                 this.clients[index].name = client.name
-                this.clients[index].surename = client.surename
+                this.clients[index].surname = client.surname
                 this.clients[index].country = client.country
-                console.log(JSON.stringify(this.clients[index]))
-            }else{
+            } else {
                 console.log('error: client was not updated!')
             }
-        }catch(e){
+        } catch (e) {
             console.log(e)
         }
     }

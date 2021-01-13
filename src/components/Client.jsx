@@ -10,7 +10,7 @@ class Client extends Component {
             return (
                 <tr className='clientRow' data-id={this.props.client.id} onClick={() => this.props.showPopup(this.props.client)}>
                     <td className='name'>{this.props.client.name}</td>
-                    <td className='surename'>{this.props.client.surename}</td>
+                    <td className='surname'>{this.props.client.surname}</td>
                     <td className='country'>{this.props.client.country}</td>
                     <td className='firstContact'>{this.props.client.firstContact}</td>
                     <td className='email'>{this.props.client.email}</td>
@@ -19,7 +19,7 @@ class Client extends Component {
                 </tr>
             )
         }
-        return
+        return null
     }
 
 }
