@@ -142,7 +142,10 @@ class DbManager{
 
     async getAllClients() {
         try{
-            const result = await sequelize.query('SELECT * FROM Clients')
+            const result = await sequelize.query(`SELECT cl.id, cl.name, cl.email, cl.firstContact, cl.emailType, cl.sold, e.name as owner, co.name as country `
+            +`FROM Clients as cl, Country co, Employees e `
+            +`WHERE cl.country=co.id AND cl.owner = e.id `
+            +`ORDER BY cl.firstContact DESC`)
             return result[0]
         }catch(e){
             console.log('Error: Cannot return data from db')
