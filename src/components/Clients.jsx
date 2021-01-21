@@ -4,6 +4,8 @@ import { observer, inject } from 'mobx-react'
 import Client from './Client';
 import Popup from './Popup';
 import SearchBar from './SearchBar'
+import Range from './Range'
+// import Search from './Search'
 
 class Clients extends Component {
 
@@ -11,7 +13,8 @@ class Clients extends Component {
         super()
         this.state = {
             showPopup: false,
-            clickedClient: {}
+            clickedClient: {},
+            offset: 0
         }
     }
 
@@ -29,8 +32,14 @@ class Clients extends Component {
         })
     }
 
+    updateOffset = (offset) => {
+        this.setState({
+            offset: offset
+        }, () => this.props.clientsStore.loadAllClients(this.state.offset))
+    }
+
     componentDidMount() {
-        this.props.clientsStore.loadAllClients()
+        this.props.clientsStore.loadAllClients(this.state.offset)
     }
 
     render() {
@@ -39,6 +48,8 @@ class Clients extends Component {
         return (
             <div>
                 <SearchBar />
+                <Range offset={this.state.offset} updateOffset={this.updateOffset}/>
+                {/* <Search search={this.props.clientsStore.search} /> */}
                 <table className='clientsTable'>
                     <tbody>
                         <tr>

@@ -14,8 +14,8 @@ class Store {
         })
     }
 
-    loadAllClients = async (client) => {
-        const results = await axios.get(`http://localhost:3001/clients`)
+    loadAllClients = async (offset) => {
+        const results = await axios.get(`http://localhost:3001/clients/${offset}`)
         // console.log(results)
         this.clients = results.data.map(element => {
             const name = element.name.split(' ')

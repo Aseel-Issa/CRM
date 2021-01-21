@@ -10,8 +10,42 @@ router.get('/sanity', function (request, response) {
 })
 
 // /clients - a GET route that returns all of the clients from DB
-router.get('/clients', async function (request, response) {
-    const results = await db.getAllClients()
+router.get('/clients/:offset', async function (request, response) {
+    const results = await db.getAllClients(request.params.offset)
+    response.send(results)
+})
+
+// /employees - a GET route that returns all of the employees from DB
+router.get('/employees', async function (request, response) {
+    const results = await db.getAllEmployees()
+    response.send(results)
+})
+
+// /client - a GET route that returns the client from DB based on its name
+router.get('/client/:name', async function (request, response) {
+    const results = await db.getClientsByName(request.params.name)
+    response.send(results)
+})
+// /clientInMonth - a GET route that returns the number of clients in current month from DB
+router.get('/clientInMonth', async function (request, response) {
+    const results = await db.getNumberOfClientsContactedInCurrentMonth()
+    response.send(results)
+})
+
+// /emails - a GET route that returns the number of all the sent emails
+router.get('/emails', async function (request, response) {
+    const results = await db.getNumberOfSentMails()
+    response.send(results)
+})
+
+// /outstanding - a GET route that returns the number of all the outstanding customers
+router.get('/outstanding', async function (request, response) {
+    const results = await db.getNumberOfOutstandingClients()
+    response.send(results)
+})
+// /hottestCountry - a GET route that returns the city with highest sales
+router.get('/hottestCountry', async function (request, response) {
+    const results = await db.getHottestCountry()
     response.send(results)
 })
 

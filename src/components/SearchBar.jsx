@@ -9,13 +9,13 @@ class SearchBar extends Component {
         super()
         this.state = {
             searchStr: '',
-            field: ''
+            field: 'Name'
         }
 
     }
 
     handleInput = (e) => {
-        this.setState({searchStr: e.target.value})
+        this.setState({searchStr: e.target.value}, this.search)
     }
 
     handleField = (e) => {
@@ -25,8 +25,10 @@ class SearchBar extends Component {
     search = () => {
         if(this.state.field == 'First Contact'){
             this.props.clientsStore.search(this.state.searchStr, 'firstContact')
+        }else{
+            this.props.clientsStore.search(this.state.searchStr, this.state.field)
         }
-        this.props.clientsStore.search(this.state.searchStr, this.state.field)
+        
     }
 
     render() {
