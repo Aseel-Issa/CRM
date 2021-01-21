@@ -1,0 +1,56 @@
+function findSumIndex(numbers, target) {
+
+let sum ={}
+for(let i=0; i<array.length-1; i++){
+    sum[i]=i
+}
+for(let i=0; i<array.length-1; i++){
+    for(keyin object){
+        if sum[key] + array[i] == 14
+        return {key, i}
+    }
+}
+
+
+}
+
+sum{
+    5: 0
+    2: 1
+    3: {
+        1: 2,
+        2: 3
+    }
+
+}
+
+[5, 2, 3, 3, 6, 1 ,9]
+6
+[0, 4]
+
+
+
+function longestCommonPrefix(words) {
+
+
+}
+
+
+['flow', fly, flop]
+fl
+
+let word = array[0]  'flow'
+let prefix= ''
+let flag = true
+for each letter in flow
+if(flag){
+    for each word in array
+        if(!word.includes(prefix))
+            flag = false
+            break;
+        else{
+            prefix+=letter
+        }
+}
+
+return prefix without the last letter
